@@ -17,6 +17,7 @@ import {
   Text,
   useColorScheme,
   View,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -27,41 +28,12 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string;
-  }>
-> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    flex: 1,
   };
 
   return (
@@ -70,30 +42,120 @@ const App = () => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{flex: 1}}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}>
+            <Text style={{fontSize: 90, fontWeight: '900'}}>12</Text>
+            <View style={{height: 10, width: 140, backgroundColor: 'black'}} />
+            <Text style={{fontSize: 20, fontWeight: '900'}}>HOURS</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}>
+            <Text style={{fontSize: 90, fontWeight: '900'}}>05</Text>
+            <View style={{height: 10, width: 140, backgroundColor: 'black'}} />
+            <Text style={{fontSize: 20, fontWeight: '900'}}>MINUTES</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}>
+            <Text style={{fontSize: 90, fontWeight: '900'}}>00</Text>
+            <View style={{height: 10, width: 140, backgroundColor: 'black'}} />
+            <Text style={{fontSize: 20, fontWeight: '900'}}>SECONDS</Text>
+          </View>
         </View>
-      </ScrollView>
+        <View style={{flex: 1}}>
+          <View
+            style={{
+              flexGrow: 1,
+            }}>
+            <Text
+              style={{
+                fontSize: 60,
+                fontWeight: '900',
+                transform: [
+                  {rotate: '90deg'},
+                  {translateX: 250},
+                  {translateY: 130},
+                ],
+                width: 550,
+                letterSpacing: 5,
+              }}>
+              COUNTDOWN
+            </Text>
+            <Text
+              style={{
+                fontSize: 60,
+                fontWeight: '700',
+                transform: [
+                  {rotate: '90deg'},
+                  {translateX: 180},
+                  {translateY: 185},
+                ],
+                width: 550,
+                letterSpacing: 5,
+              }}>
+              TIMER
+            </Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <View>
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    textDecorationLine: 'underline',
+                    fontWeight: '600',
+                    letterSpacing: 1,
+                    margin: 5,
+                  }}>
+                  PAUSE
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    textDecorationLine: 'underline',
+                    fontWeight: '600',
+                    letterSpacing: 1,
+                    margin: 5,
+                  }}>
+                  STOP
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    textDecorationLine: 'underline',
+                    fontWeight: '600',
+                    letterSpacing: 1,
+                    margin: 5,
+                  }}>
+                  RESTART
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
